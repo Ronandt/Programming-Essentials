@@ -1,13 +1,16 @@
 def wheel_of_fortune():  # idk I gave up Im sorry
-    import re
-    sentence = "wheel of fortune"
-    p = re.compile('\w')
-    hidden_sentence = p.sub('-', sentence)
-    print("Guess the prhase: " + hidden_sentence)
-    while "-" in hidden_sentence:
+   sentence = "wheel of fortune"
+   hidden_sentence = [x if x == " " else '-' for x in sentence]
+   while "-" in hidden_sentence:
         letter = input("Give me a letter: ")
-        "".join([letter if letter == sentence or letter if letter == " " else '-' for letter in sentence]
-                print("Guess the phrase: " + ))
+        hidden_sentence = "".join(["-" if char != letter else char for char in sentence])
+        #maybe try and replace with index
+
+
+
+            
+
+        print("Guess the phrase: " + "".join(hidden_sentence))
 
 
 print(wheel_of_fortune())
