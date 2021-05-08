@@ -31,7 +31,7 @@ def sumLoopCustom():  # It is possible with a for loop if there are numbers in a
 
 def retail():
     cost_price = int(input("What is the cost price: "))
-    while cost_price > 0:
+    while cost_price > 0:  #  Ensure that the cost_price is a positive number
         cost_price = int(input("What is the cost price: "))
         print(f"Cost price is: {cost_price * 1/4}")
     return "" # Placeholder to ensure program does not return NoneType
