@@ -10,9 +10,9 @@ while 1:        #  A while loop with no condition
         copies = int(input("What is the number book copies: "))  
         subtotal = unit_price * copies
         GST = subtotal * 0.07
-        print(f"Subtotal: {subtotal}")  #For those who have not learnt f strings, they are very useful so please learn them 
-        print(f"GST: {GST}")   #  By using this method you could fit all datatypes into a string without much trouble
-        print(f"Total amount: {subtotal + GST}")
+        print("Subtotal: $%.2f" % (subtotal))  # *For those who have not learnt f strings, they are very useful so please learn them (Without formatting though)
+        print("GST: $%.2f" % (GST))   #  By using this method you could fit all datatypes into a string without much trouble
+        print("Total amount: $%.2f" % (subtotal + GST))
         break
     except ValueError:
         print("Please input the proper amount of book copies!")
