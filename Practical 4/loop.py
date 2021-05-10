@@ -38,7 +38,7 @@ def retail():
 
 
 def gpaLoop():
-    all_pt, total_credits = [], []
+    all_points, total_credits = [], []
     for x in range(1, 6): # Remember x + 1 as the last number of range is exclusive
         credits_curr = int(input(f"Enter the credit for Module {x}: "))
         GPA_curr = float(input(f"Enter your GPA for Module {x}: "))
