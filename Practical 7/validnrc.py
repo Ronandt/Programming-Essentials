@@ -1,9 +1,9 @@
-def is_valid_nric(s):
+def is_valid_nric(s): # regex moment
     if len(s) != 9:
         return False
-    if s[0].upper() in ['S', 'T'] and s[-1].upper() in list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
+    if s[0].upper() in ['S', 'T'] and s[-1].isalpha():
         for number in s[1:7]:
-            if number in ['1','2','3','4','5','6','7','8','9','0']:
+            if number.isnumeric():
                 return True
             else:
                 return False
