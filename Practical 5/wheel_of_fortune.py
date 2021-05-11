@@ -1,16 +1,23 @@
-def wheel_of_fortune():  # idk I gave up Im sorry
-   sentence = "wheel of fortune"
-   hidden_sentence = [x if x == " " else '-' for x in sentence]
-   while "-" in hidden_sentence:
+def wheel_of_fortune():
+    sentence = "wheel of fortune"
+    cache = [x if x == " " else '-' for x in sentence]
+    while "-" in cache:
         letter = input("Give me a letter: ")
-        hidden_sentence = "".join(["-" if char != letter else char for char in sentence])
-        #maybe try and replace with index
-
-
-
-            
-
-        print("Guess the phrase: " + "".join(hidden_sentence))
+        hidden_sentence = []
+        for char in sentence:
+            if char != letter and char != " ":
+                hidden_sentence.append("-")
+            elif char == " ":
+                hidden_sentence.append(" ")
+            else:
+                hidden_sentence.append(char)
+        for index in range(len(sentence)):
+            if hidden_sentence[index] != "-" and cache[index] == "-":
+                cache[index] = hidden_sentence[index]
+            else:
+                cache[index] = cache[index]
+        print("Guess the phrase: " + "".join(cache))
+    return "Yeah, You got it right!"
 
 
 print(wheel_of_fortune())
