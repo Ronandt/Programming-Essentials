@@ -9,7 +9,8 @@ def convertGrade(score):
 try:  # Check whether the input is valid
     score_input = input("What is your grade:")
     print(convertGrade(score_input)) 
-    if x not in ['A', 'B', 'C', 'D']:
-        print("Grade is Invalid! Enter a grade (A, B, C or D)")
 except ValueError:
     print("Please enter a grade - A, B, C or D!")
+except KeyError:
+    print("Grade is Invalid! Enter a grade - A, B, C or D!")
+    
