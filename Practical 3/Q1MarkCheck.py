@@ -12,6 +12,7 @@ while 1:  # While condition to repeat the input if it is invalid
             print("Please input an integer from 0-100!")
         else:
             print(markCheck(mark_input))
+            break
     except ValueError:
         print("Please input a number!")
 

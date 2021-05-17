@@ -5,7 +5,7 @@ if x not in [1, 2]:
         print("Please enter a number 1 or 2!")
 if x == 1:
     def bmi(weight, height):  # Mode 1: finding your own BMI
-        BMI = weight/height**2  # BMI Formula
+        BMI = weight/height**2 # BMI Formula
         if BMI >= 27.5:
             classification = "Obese"
         elif 23 <= BMI < 27.5:
@@ -16,8 +16,8 @@ if x == 1:
             classification = "Underweight"
         return f"Your BMI is {BMI} and you are {classification.lower()}"
     try:  # Check whether the input is valid
-        weight = float(input("Enter your weight: "))
-        height = float(input("Enter your height: "))
+        weight = float(input("Enter your weight (kg): "))
+        height = float(input("Enter your height (m): "))
         print(bmi(weight, height))
         if weight < 0 or height < 0:
             print("Something must be wrong with your body!")
@@ -25,7 +25,7 @@ if x == 1:
             print("Please enter an Integer/Float!")
 elif x == 2:  # Mode 2: finding your ideal BMI given height
     def ideal_bmi(height):
-        return f"{18.5 * height ** 2} - {22.99 * height ** 2}"
+        return f"{18.5 * height ** 2}kg - {22.99 * height ** 2}kg"
     try:  # Check whether the input is valid
         height_input = float(input("Enter your height: "))
         print(ideal_bmi(height_input))
