@@ -10,7 +10,7 @@ def ticketPrice(age):  # Check for the price of the tickets
 
 try:  # Check for the correct value first before executing the function
     day = int(input("Enter day of the week (1-7): "))
-    age_input=int(input("Enter age: "))
+    age_check = int(input("Enter age: "))
     if 4 < age_check <= 130 and day in [1, 2, 3, 4, 5]:
         print(ticketPrice(age_check))
     elif 4 < age_check <= 130 and day in [6, 7]:

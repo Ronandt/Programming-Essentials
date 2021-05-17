@@ -14,3 +14,4 @@ while 1:  # While condition to repeat the input if it is invalid
             print(markCheck(mark_input))
     except ValueError:
         print("Please input a number!")
+
