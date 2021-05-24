@@ -10,7 +10,7 @@ try:
 except ValueError:
     print("That is not a time of the day!")
 
-k = ""
+
 spent = float(input("Amount spent: "))
 if spent >= 50:
     umb = spent//50
@@ -23,11 +23,7 @@ else:
 print(k)
 
 time = int(input("Enter number of working hours: "))
-total = 0
-total += max(0, min(time, 5)) * 5
-total += max(0, time - 5) * 6
-total += max(0, time - 5 - 5) * 8
-print("Salary for today is $%.2f" % (total))
+print("Salary for today is $%.2f" % (max(0, min(time, 5)) * 5 + max(0, time - 5) * 6 + max(0, time - 10) * 8))
 
 
 try:
