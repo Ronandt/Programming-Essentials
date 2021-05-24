@@ -26,7 +26,7 @@ time = int(input("Enter number of working hours: "))
 total = 0
 if 0 < time <= 5:
     total += 5*time
-elif 10>= time > 5:
+elif 10 >= time > 5:
     total += 5 * 5
     total += (time - 5) * 6
 else:
@@ -38,7 +38,8 @@ print("Salary for today is $%.2f" % (total))
 
 try:
     age = int(input("Enter age: "))
-    days = input("Enter weekdays, weekends or public holidays (WD/WE/PH): ").strip().upper()
+    days = input(
+        "Enter weekdays, weekends or public holidays (WD/WE/PH): ").strip().upper()
     if days == "WD":
         if age >= 60:
             money = 14
@@ -50,7 +51,7 @@ try:
         if age >= 60:
             money = 14
         elif 12 >= age >= 3:
-            money = 17
+            money = 18
         elif age > 12:
             money = 25.5
     elif days == "PH":
