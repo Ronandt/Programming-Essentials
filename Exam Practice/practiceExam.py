@@ -25,30 +25,26 @@ print(k)
 time = int(input("Enter number of working hours: "))
 print("Salary for today is $%.2f" % (max(0, min(time, 5)) * 5 + max(0, time - 5) * 6 + max(0, time - 10) * 8))
 
-
+import sys
 try:
     age = int(input("Enter age: "))
     days = input(
         "Enter weekdays, weekends or public holidays (WD/WE/PH): ").strip().upper()
-        
+    if age >= 60:
+        print("Ticket price is $14.00")
+        sys.exit()
     if days == "WD":
-        if age >= 60:
-            money = 14
-        elif 12 >= age >= 3:
+        if 12 >= age >= 3:
             money = 17
         elif age > 12:
             money = 25.5
     elif days == "WE":
-        if age >= 60:
-            money = 14
-        elif 12 >= age >= 3:
+        if 12 >= age >= 3:
             money = 18
         elif age > 12:
             money = 25.5
     elif days == "PH":
-        if age >= 60:
-            money = 14
-        elif 12 >= age >= 3:
+        if 12 >= age >= 3:
             money = 19
         elif age > 12:
             money = 28.5
@@ -67,6 +63,8 @@ elif member == 'Y' and credit == 'Y':
     i = "$3 voucher and a free gift"
 elif member == "N" and credit == "N":
     i = "Nothing"
+elif member == 'N' and credit == "Y":
+    print("A free gift")
 else:
     print('INVALID')
 print(f"You will be getting:\n{i}")
