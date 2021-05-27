@@ -23,7 +23,7 @@ else:
 print(k)
 
 time = int(input("Enter number of working hours: "))
-print("Salary for today is $%.2f" % (max(0, min(time, 5)) * 5 + max(0, time - 5) * 6 + max(0, time - 10) * 8))
+print("Salary for today is $%.2f" % (max(0, min(time, 5)) * 5 + max(0, min(time - 6, 6)) * 6 + max(0, time - 10) * 8))
 
 import sys
 try:
