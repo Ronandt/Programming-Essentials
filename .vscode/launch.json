@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch Prgresshw_inJava",
+            "request": "launch",
+            "mainClass": "Java.Prgresshw_inJava",
+            "projectName": "Programming-Essentials_8ab0e8f3"
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
