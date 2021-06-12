@@ -22,9 +22,7 @@ while 1:
     record, paid = [], [0]
     if vendor == "N":
         for x in inventory:
-            print(
-                f"{x}. {inventory[x]['description']} (${inventory[x]['price']}) " + "\t" + f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (
-                            inventory[x]['quantity'] <= 0))
+            print(f"{x}. {inventory[x]['description']} (${inventory[x]['price']}) " + "\t" + f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
         print("0. Exit / Payment")
         number = 0
         while 1:
@@ -62,16 +60,13 @@ while 1:
                     break
             if sum(paid) - sum(record) < 0:
                 print("Not enough to pay for the drinks\nTake back your cash!")
-                while 1:
+                cancel = ""
+                while cancel not in ["N", "Y"]:
                     cancel = input("Do you want to cancel the purchase? Y/N: ").upper().strip()
-                    if cancel not in ["N", "Y"]:
-                        continue
-                    break
+                paid.clear()
                 if cancel == "N":
-                    paid.clear()
                     continue
                 elif cancel == "Y":
-                    paid.clear()
                     print("Purchase is cancelled. Thank you.")
                     break
                 break
