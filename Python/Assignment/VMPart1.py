@@ -1,22 +1,9 @@
 import sys
-inventory = {'IM': {'description': 'Iced Milo', 'price': 1.5, 'quantity': 30},
-             'IC': {'description': 'Iced Coffee', 'price': 1.5, 'quantity': 40},
-             'CC': {'description': 'Coca Cola', 'price': 1.3, 'quantity': 50},
-             'HM': {'description': 'Hot Milo', 'price': 1.2, 'quantity': 20},
-             'HC': {'description': 'Hot Coffee', 'price': 1.2, 'quantity': 0},
-             '1P': {'description': '100 Plus', 'price': 1.1, 'quantity': 50}}
 vendor = input("Are you a vendor (Y/N)? ").upper().strip()
 if vendor not in ["Y", "N"]:
     print("Please input correctly!")
     sys.exit()
 print("Welcome to ABC Vending Machine.\nSelect from following choices to continue: ")
-def add_drink_type(drink_id, description, price, quantity):
-    inventory[drink_id] = {'description': description, 'price': price, 'quantity': quantity}
-    print(inventory)
-
-def replenish_drink(drink_id, quantity):
-    
-
 menu, record, paid = {
     "IM": 1.5,
     "HM": 1.2,
@@ -40,8 +27,7 @@ if vendor == "N":
         except ValueError:
             print("Please input the proper number of drinks!")
     print("Please pay: $%.2f" % sum(record)), print("Indicate your payment:")
-    cancel = "N"
-    while cancel == "N":
+    while 1:
         money_sequence = 20
         for x in range(3):
             money_sequence //= 2
@@ -57,27 +43,12 @@ if vendor == "N":
                 sys.exit()
         if sum(paid) - sum(record) < 0:
             print("Not enough to pay for the drinks\nTake back your cash!")
-            while 1:
-                cancel = input("Do you want to cancel the purchase? Y/N: ").upper().strip()
-                if cancel == "Y":
-                    print("Purchase is cancelled. Thank you.")
-                    sys.exit()
-                elif cancel not in ["Y", "N"]:
-                    print("Not a proper confirmation!")
-                    continue
+            cancel = input("Do you want to cancel the purchase? Y/N: ").upper().strip()
+            if cancel == "Y":
+                print("Purchase is cancelled. Thank you.")
+                sys.exit()
+            elif cancel == "N":
                 paid.clear()
-                break
-elif vendor == "Y":
-    print("1. Add Drink Type\n2. Replenish Drink\n0. Exit")
-    choice = int(input("Enter choice: "))
-    if choice == 1:
-        while 1:
-            drinkid = input("Enter drink id: ").upper().strip()
-            if drinkid in inventory:
-                print("Drink id exists!")
                 continue
-            break
-        add_drink_type(drinkid, input("Enter description of drink: ").strip(), float(input("Enter price: $")), int(input("Enter quantity: ")))
-    elif choice == 2:
-        for x in inventory:
-            print(f"{x}. {inventory[x]['description']} (${inventory[x]['price']}) " + "\t" + f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
+elif vendor == "Y":
+    print("1. Add Drink Type\n2. Replenish Drink\n0. Exit\nEnter choice: ") #enter choice input?
