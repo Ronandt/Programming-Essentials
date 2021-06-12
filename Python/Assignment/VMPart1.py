@@ -18,7 +18,8 @@ if vendor == "N":
     while 1:
         try:
             choice = input("Enter choice: ").upper().strip()
-            if choice == "0": break
+            if choice == "0":
+                break
             check = menu[choice]
             number = int(input("No. of drinks selected = "))
             record.append(check * number)
@@ -33,17 +34,20 @@ if vendor == "N":
             money_sequence //= 2
             while 1:
                 try:
-                    paid.append(int(input(f"Enter no. of ${money_sequence} notes: ")) * money_sequence)
+                    paid.append(
+                        int(input(f"Enter no. of ${money_sequence} notes: ")) * money_sequence)
                     break
                 except ValueError:
                     print("Please input the proper number of notes!")
             if sum(paid) >= sum(record):
-                print("Please collect your change: $%.2f" % (sum(paid) - sum(record)))
+                print("Please collect your change: $%.2f" %
+                      (sum(paid) - sum(record)))
                 print("Drinks paid. Thank you.")
                 sys.exit()
         if sum(paid) - sum(record) < 0:
             print("Not enough to pay for the drinks\nTake back your cash!")
-            cancel = input("Do you want to cancel the purchase? Y/N: ").upper().strip()
+            cancel = input(
+                "Do you want to cancel the purchase? Y/N: ").upper().strip()
             if cancel == "Y":
                 print("Purchase is cancelled. Thank you.")
                 sys.exit()
@@ -51,4 +55,5 @@ if vendor == "N":
                 paid.clear()
                 continue
 elif vendor == "Y":
-    print("1. Add Drink Type\n2. Replenish Drink\n0. Exit\nEnter choice: ") #enter choice input?
+    # enter choice input?
+    print("1. Add Drink Type\n2. Replenish Drink\n0. Exit\nEnter choice: ")
