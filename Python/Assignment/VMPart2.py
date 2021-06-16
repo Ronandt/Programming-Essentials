@@ -8,17 +8,17 @@ inventory = {'IM': {'description': 'Iced Milo', 'price': 1.5, 'quantity': 30},
              'CC': {'description': 'Coca Cola', 'price': 1.3, 'quantity': 50}}
 while 1:
     while 1:
-        vendor = input("Are you a vendor (Y/N)? ").upper().strip()
+        vendor = input("\33[94mAre you a vendor (Y/N)? \033[0m").upper().strip()
         if vendor in ["Y", "N"]:
             break
-        print("Please input correctly!")
-    print("Welcome to ABC Vending Machine.\nSelect from following choices to continue: ")
+        print("\33[33mPlease input correctly!\033[0m")
+    print("\33[35mWelcome to ABC Vending Machine.\033[0m\n\33[31mSelect from following choices to continue: \033[0m")
     def add_drink_type(drink_id, description, price, quantity):
         inventory[drink_id] = {'description': description, 'price': price, 'quantity': quantity}
-        print("New drink added!")
+        print("\33[42mNew drink added!\033[0m")
     def replenish_drink(drink_id, quantity):
         drink_id['quantity'] = drink_id['quantity'] + quantity
-        print("Iced Milo has been top up!")
+        print(f"{drink_id['description']} has been top up!")
     record, paid = [], [0]
     if vendor == "N":
         for x in inventory:
