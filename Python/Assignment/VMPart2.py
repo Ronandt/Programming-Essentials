@@ -34,10 +34,12 @@ while 1:
                 elif inventory[choice]['quantity'] == 0:
                     print(f"{inventory[choice]['description']} is out of stock")
                     continue
+                cache = inventory[choice]['quantity']
                 number = int(input("No. of drinks selected = "))
                 if inventory[choice]['quantity'] - number >= 0:
                     record.append(inventory[choice]['price'] * number)
                     choices.append(choice), quantities.append(number)
+                    inventory[choice]['quantity'] = inventory[choice]['quantity'] - number
                 else:
                     print(f"{inventory[choice]['description']} does not have enough stock for your needs!")
             except KeyError:
@@ -57,8 +59,6 @@ while 1:
                         print("Please input the proper number of notes!")
                 if sum(paid) >= sum(record):
                     print("Please collect your change: $%.2f" % (sum(paid) - sum(record)))
-                    for i, p in list(zip(choices, quantities)):
-                        inventory[i]['quantity'] = inventory[i]['quantity'] - p
                     print("Drinks paid. Thank you.")
                     break
             if sum(paid) - sum(record) < 0:
@@ -70,6 +70,8 @@ while 1:
                 if cancel == "N":
                     continue
                 elif cancel == "Y":
+                    for i, p in list(zip(choices, quantities)):
+                        inventory[i]['quantity'] = inventory[i]['quantity'] + p
                     print("Purchase is cancelled. Thank you.")
                     break
             choices.clear(), quantities.clear()
