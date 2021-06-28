@@ -16,14 +16,26 @@ def ending():
     else:
         return string
 
-def wheel_of_fortune(): #idk I gave up Im sorry
-    import re
+def wheel_of_fortune():
     sentence = "wheel of fortune"
-    p = re.compile('\w')
-    hidden_sentence = p.sub('-', sentence)
-    print("Guess the prhase: " + hidden_sentence)
-    while "-" in hidden_sentence:
+    cache = [x if x == " " else '-' for x in sentence]
+    while "-" in cache:
         letter = input("Give me a letter: ")
-        "".join([letter if letter == sentence or letter if letter == " " else '-' for letter in sentence]
-        print("Guess the phrase: " + ))
+        hidden_sentence = []
+        for char in sentence:
+            if char != letter and char != " ":
+                hidden_sentence.append("-")
+            elif char == " ":
+                hidden_sentence.append(" ")
+            else:
+                hidden_sentence.append(char)
+        for index in range(len(sentence)):
+            if hidden_sentence[index] != "-" and cache[index] == "-":
+                cache[index] = hidden_sentence[index]
+            else:
+                pass
+        print("Guess the phrase: " + "".join(cache))
+    return "Yeah, You got it right!"
+
+
 print(wheel_of_fortune())

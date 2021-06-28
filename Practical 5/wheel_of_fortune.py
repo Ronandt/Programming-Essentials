@@ -15,7 +15,7 @@ def wheel_of_fortune():
             if hidden_sentence[index] != "-" and cache[index] == "-":
                 cache[index] = hidden_sentence[index]
             else:
-                cache[index] = cache[index]
+                pass
         print("Guess the phrase: " + "".join(cache))
     return "Yeah, You got it right!"
 
