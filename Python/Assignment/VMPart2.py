@@ -8,21 +8,26 @@ inventory = {'IM': {'description': 'Iced Milo', 'price': 1.5, 'quantity': 30},
              'CC': {'description': 'Coca Cola', 'price': 1.3, 'quantity': 50}}
 while 1:
     while 1:
-        vendor = input("\33[94mAre you a vendor (Y/N)? \033[0m").upper().strip()
+        vendor = input(
+            "\33[94mAre you a vendor (Y/N)? \033[0m").upper().strip()
         if vendor in ["Y", "N"]:
             break
         print("\33[33mPlease input correctly!\033[0m")
     print("\33[35mWelcome to ABC Vending Machine.\033[0m\n\33[31mSelect from following choices to continue: \033[0m")
+
     def add_drink_type(drink_id, description, price, quantity):
-        inventory[drink_id] = {'description': description, 'price': price, 'quantity': quantity}
+        inventory[drink_id] = {'description': description,
+                               'price': price, 'quantity': quantity}
         print("\33[42mNew drink added!\033[0m")
+
     def replenish_drink(drink_id, quantity):
         drink_id['quantity'] = drink_id['quantity'] + quantity
         print(f"{drink_id['description']} has been top up!")
     record, paid = [], [0]
     if vendor == "N":
         for x in inventory:
-            print(f"{x}. {inventory[x]['description']} (${inventory[x]['price']}) " + "\t" + f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
+            print(f"{x}. {inventory[x]['description']} (${inventory[x]['price']}) " + "\t" +
+                  f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
         print("0. Exit / Payment")
         number = 0
         choices, quantities = [], []
@@ -32,40 +37,46 @@ while 1:
                 if choice == "0":
                     break
                 elif inventory[choice]['quantity'] == 0:
-                    print(f"{inventory[choice]['description']} is out of stock")
+                    print(
+                        f"{inventory[choice]['description']} is out of stock")
                     continue
                 cache = inventory[choice]['quantity']
-                number = int(input("No. of drinks selected = "))
+                number = max(int(input("No. of drinks selected = ")), 0)
                 if inventory[choice]['quantity'] - number >= 0:
                     record.append(inventory[choice]['price'] * number)
                     choices.append(choice), quantities.append(number)
                     inventory[choice]['quantity'] = inventory[choice]['quantity'] - number
                 else:
-                    print(f"{inventory[choice]['description']} does not have enough stock for your needs!")
+                    print(
+                        f"{inventory[choice]['description']} does not have enough stock for your needs!")
             except KeyError:
                 print("Invalid option")
             except ValueError:
                 print("Please input the proper number of drinks!")
-        print("Please pay: $%.2f" % sum(record)), print("Indicate your payment:")
+        print("Please pay: $%.2f" % sum(record)), print(
+            "Indicate your payment:")
         while 1:
             money_sequence = 20
             for x in range(3):
                 money_sequence //= 2
                 while 1:
                     try:
-                        paid.append(int(input(f"Enter no. of ${money_sequence} notes: ")) * money_sequence)
+                        paid.append(
+                            int(input(f"Enter no. of ${money_sequence} notes: ")) * money_sequence)
                         break
                     except ValueError:
                         print("Please input the proper number of notes!")
                 if sum(paid) >= sum(record):
-                    print("Please collect your change: $%.2f" % (sum(paid) - sum(record)))
+                    print("Please collect your change: $%.2f" %
+                          (sum(paid) - sum(record)))
                     print("Drinks paid. Thank you.")
                     break
             if sum(paid) - sum(record) < 0:
                 print("Not enough to pay for the drinks\nTake back your cash!")
                 cancel = ""
                 while cancel not in ["N", "Y"]:
-                    cancel = input("Do you want to cancel the purchase? Y/N: ").upper().strip()
+                    cancel = input(
+                        "Do you want to cancel the purchase? Y/N: ").upper().strip()
                 paid.clear()
                 if cancel == "N":
                     continue
@@ -88,18 +99,22 @@ while 1:
                     print("Drink id exists!")
                 while 1:
                     try:
-                        add_drink_type(drinkid, input("Enter description of drink: ").strip(), float(input("Enter price: $")), int(input("Enter quantity: ")))
+                        add_drink_type(drinkid, input("Enter description of drink: ").strip(), max(
+                            0.0, float(input("Enter price: $"))), max(0, int(input("Enter quantity: "))))
                         break
                     except ValueError:
                         print("Improper pricing or quantity!")
             elif choice == '2':
                 for x in inventory:
-                    print(f"{x}. {inventory[x]['description']} (${inventory[x]['price']}) " + "\t" + f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
+                    print(f"{x}. {inventory[x]['description']} (${inventory[x]['price']}) " + "\t" +
+                          f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
                 while 1:
                     try:
-                        drinkid = inventory[input("Enter drink id: ").upper().strip()]
+                        drinkid = inventory[input(
+                            "Enter drink id: ").upper().strip()]
                         if drinkid['quantity'] < 5:
-                            replenish_drink(drinkid, int(input("Enter quantity: ")))
+                            replenish_drink(drinkid, max(
+                                0, int(input("Enter quantity: "))))
                             break
                         print("No need to replenish. Quantity is greater than 5")
                         break
