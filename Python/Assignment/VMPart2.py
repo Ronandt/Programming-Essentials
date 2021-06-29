@@ -29,7 +29,7 @@ while 1:
             print(f"{x}. {inventory[x]['description']} (${inventory[x]['price']}) " + "\t" +
                   f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
         print("0. Exit / Payment")
-        number = 0
+        number = 1
         choices, quantities = [], []
         while 1:
             try:
@@ -40,12 +40,11 @@ while 1:
                     print(
                         f"{inventory[choice]['description']} is out of stock")
                     continue
-                cache = inventory[choice]['quantity']
-                number = max(int(input("No. of drinks selected = ")), 0)
-                if inventory[choice]['quantity'] - number >= 0:
-                    record.append(inventory[choice]['price'] * number)
-                    choices.append(choice), quantities.append(number)
-                    inventory[choice]['quantity'] = inventory[choice]['quantity'] - number
+                if inventory[choice]['quantity'] - 1 >= 0:
+                    record.append(inventory[choice]['price']), choices.append(choice), quantities.append(1)
+                    inventory[choice]['quantity'] -= 1
+                    print(f"No. of drinks selected = {number}")
+                    number += 1
                 else:
                     print(
                         f"{inventory[choice]['description']} does not have enough stock for your needs!")

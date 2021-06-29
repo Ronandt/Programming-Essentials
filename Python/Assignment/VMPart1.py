@@ -14,15 +14,16 @@ menu, record, paid = {
 }, [], [0]
 if vendor == "N":
     print("IM. Iced Milo (S$1.5)\nHM. Hot Milo (S$1.2)\nIC. Iced Coffee (S$1.5)\nHC. Hot Coffee (S$1.2)\n1P. 100 Plus (S$1.1)\nCC. Coca Cola (S$1.3)\n0. Exit / Payment")
-    number = 0
+    number = 1
     while 1:
         try:
             choice = input("Enter choice: ").upper().strip()
             if choice == "0":
                 break
             check = menu[choice]
-            number = int(input("No. of drinks selected = "))
-            record.append(check * number)
+            print(f"No. of drinks selected = {number}")
+            record.append(check)
+            number += 1
         except KeyError:
             print("Invalid option")
         except ValueError:
@@ -57,3 +58,4 @@ if vendor == "N":
 elif vendor == "Y":
     # enter choice input?
     print("1. Add Drink Type\n2. Replenish Drink\n0. Exit\nEnter choice: ")
+    
