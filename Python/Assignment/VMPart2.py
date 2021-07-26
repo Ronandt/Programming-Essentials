@@ -9,25 +9,26 @@ inventory = {'IM': {'description': 'Iced Milo', 'price': 1.5, 'quantity': 30},
 while 1:
     while 1:
         vendor = input(
-            "\33[94mAre you a vendor (Y/N)? \033[0m").upper().strip()
+            "Are you a vendor (Y/N)? ").upper().strip()
         if vendor in ["Y", "N"]:
             break
-        print("\33[33mPlease input correctly!\033[0m")
-    print("\33[35mWelcome to ABC Vending Machine.\033[0m\n\33[31mSelect from following choices to continue: \033[0m")
+        print("Please input correctly!")
+    print("Welcome to ABC Vending Machine.\nSelect from following choices to continue: ")
 
     def add_drink_type(drink_id, description, price, quantity):
         inventory[drink_id] = {'description': description,
                                'price': price, 'quantity': quantity}
-        print("\33[42mNew drink added!\033[0m")
+        print("New drink added!")
 
     def replenish_drink(drink_id, quantity):
         drink_id['quantity'] = drink_id['quantity'] + quantity
         print(f"{drink_id['description']} has been top up!")
+
     record, paid = [], [0]
     if vendor == "N":
         for x in inventory:
-            print(f"{x + '.' + inventory[x]['description'].title() + ' ($' + str(inventory[x]['price']) + ')':23} "  +
-                  f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
+            print(f"{x + '. ' + inventory[x]['description'].title() + ' (S$' + str(inventory[x]['price']) + ')':23} " +
+                  f"Qty : {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
         print("0. Exit / Payment")
         number = 1
         choices, quantities = [], []
@@ -60,8 +61,10 @@ while 1:
                 money_sequence //= 2
                 while 1:
                     try:
-                        paid.append(
-                            int(input(f"Enter no. of ${money_sequence} notes: ")) * money_sequence)
+                        neg_check = int(input(f"Enter no. of ${money_sequence} notes: "))
+                        if neg_check < 0:
+                            print("Negative values will be interpreted as 0")
+                        paid.append(max(0, neg_check) * money_sequence)
                         break
                     except ValueError:
                         print("Please input the proper number of notes!")
@@ -93,20 +96,24 @@ while 1:
             if choice == '1':
                 while 1:
                     drinkid = input("Enter drink id: ").upper().strip()
+                    if drinkid == "0":
+                        print("Cannot be 0!")
+                        continue
                     if drinkid not in inventory:
                         break
                     print("Drink id exists!")
+                des = input("Enter description of drink: ").strip()
                 while 1:
                     try:
-                        add_drink_type(drinkid, input("Enter description of drink: ").strip(), max(
+                        add_drink_type(drinkid, des, max(
                             0.0, float(input("Enter price: $"))), max(0, int(input("Enter quantity: "))))
                         break
                     except ValueError:
                         print("Improper pricing or quantity!")
             elif choice == '2':
                 for x in inventory:
-                    print(f"{x + '. ' + inventory[x]['description'].title() + '($' + str(inventory[x]['price']) + ')':23} " +
-                          f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (
+                    print(f"{x + '. ' + inventory[x]['description'].title() + ' (S$' + str(inventory[x]['price']) + ')':23} " +
+                          f"Qty : {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (
                                       inventory[x]['quantity'] <= 0))
                 while 1:
                     try:

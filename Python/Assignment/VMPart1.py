@@ -1,8 +1,11 @@
 import sys
-vendor = input("Are you a vendor (Y/N)? ").upper().strip()
-if vendor not in ["Y", "N"]:
-    print("Please input correctly!")
-    sys.exit()
+while 1:
+    vendor = input("Are you a vendor (Y/N)? ").upper().strip()
+    if vendor not in ["Y", "N"]:
+        print("Please input correctly!")
+        continue
+    break
+
 print("Welcome to ABC Vending Machine.\nSelect from following choices to continue: ")
 menu, record, paid = {
     "IM": 1.5,
