@@ -7,7 +7,7 @@ def number():
                 f"Number of records to be stored in a list: {10 - len(number_series)}")
         except ValueError:
             print("Enter a number!")
-    return f"Lowest number: {min(number_series)} | Highest number: {max(number_series)} | Number of numbers: {len(number_series)} | Average of the numbers: {sum(number_series)/len(number_series)}"
+    print(f"Lowest number: {min(number_series)} | Highest number: {max(number_series)} | Number of numbers: {len(number_series)} | Average of the numbers: {sum(number_series)/len(number_series)}")
 
 
 tracker = []
@@ -76,7 +76,7 @@ def ExamResult():
     }
 
     try:
-        student = input('Enter student name: ').strip().capitalize()
+        student = input('Enter student name: ').strip().lower().capitalize()
         print(f"Results of {student}\n==========================")
         for x, y in list(zip(range(3), ['English', 'Math', 'Science'])):
             print(f"Results for {y} = {student_results[student][x]}")

@@ -26,7 +26,7 @@ while 1:
     record, paid = [], [0]
     if vendor == "N":
         for x in inventory:
-            print(f"{x}. {inventory[x]['description']} (${inventory[x]['price']}) " + "\t" +
+            print(f"{x + '.' + inventory[x]['description'].title() + ' ($' + str(inventory[x]['price']) + ')':23} "  +
                   f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
         print("0. Exit / Payment")
         number = 1
@@ -105,8 +105,9 @@ while 1:
                         print("Improper pricing or quantity!")
             elif choice == '2':
                 for x in inventory:
-                    print(f"{x}. {inventory[x]['description']} (${inventory[x]['price']}) " + "\t" +
-                          f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (inventory[x]['quantity'] <= 0))
+                    print(f"{x + '. ' + inventory[x]['description'].title() + '($' + str(inventory[x]['price']) + ')':23} " +
+                          f"Qty: {str(inventory[x]['quantity']) * (inventory[x]['quantity'] >= 1)}" + "***out of stock***" * (
+                                      inventory[x]['quantity'] <= 0))
                 while 1:
                     try:
                         drinkid = inventory[input(
