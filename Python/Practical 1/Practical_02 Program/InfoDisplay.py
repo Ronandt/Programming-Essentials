@@ -1,5 +1,0 @@
-age = int(input("Enter age: "))
-gender = input("Enter gender (Male / Female): ")
-weight = int(input("Enter weight (kg): "))
-height = int(input("Enter height (m): "))
-print(f"Hello! Declan Kuok\nYour admin no is 172397M and age is {age}\nYour gender is {gender} and bmi is {weight/height**2}")
