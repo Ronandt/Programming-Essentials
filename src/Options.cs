@@ -341,16 +341,11 @@ namespace PokemonGame
                     Console.WriteLine("Invalid number of Pokeballs!");
                 }
 
-                try
-                {
-
+         
                     var query = db.Pokeballs.Where(x => x.Id == 1).First();
                     query.Counter += pokeballsNo;
-                }
-                catch (System.InvalidOperationException)
-                {
-                    db.Pokeballs.Add(new Pokeball(pokeballsNo));
-                }
+                    db.Pokeballs.Add(new Pokeball(Math.Max(0, pokeballsNo)));
+                
 
                 db.SaveChanges();
             }
