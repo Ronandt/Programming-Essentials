@@ -343,8 +343,8 @@ namespace PokemonGame
 
          
                     var query = db.Pokeballs.Where(x => x.Id == 1).First();
-                    query.Counter += pokeballsNo;
-                    db.Pokeballs.Add(new Pokeball(Math.Max(0, pokeballsNo)));
+                    query.Counter += Math.Max(0, pokeballsNo);
+        
                 
 
                 db.SaveChanges();

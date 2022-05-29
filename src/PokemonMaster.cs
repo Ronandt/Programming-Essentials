@@ -3,15 +3,16 @@ namespace PokemonGame
     public class PokemonMaster
     {
 
-        public PokemonMaster(int noToEvolve, List<(string, string)> evolveTo) {
+        public PokemonMaster(int noToEvolve, List<(string, string)> evolveTo)
+        {
             NoToEvolve = noToEvolve;
             EvolveTo = InitaliseEvolutions(evolveTo);
         }
 
-        public int NoToEvolve {get;set;}
-        public Dictionary<string,string> EvolveTo {get;}
+        public int NoToEvolve { get; set; }
+        public Dictionary<string, string> EvolveTo { get; }
 
-        private Dictionary<string, string> InitaliseEvolutions(List<(string, string)>customEvolutions)
+        private Dictionary<string, string> InitaliseEvolutions(List<(string, string)> customEvolutions)
         {
             List<string> subclasses = typeof(Pokemon).Assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(Pokemon)) && GetTables.EntityTypes().Contains(type.ToString().ToLower())).Select(x => x.ToString()).ToList();
             Dictionary<string, string> evolutions = subclasses.ToDictionary(x => x.Split(".")[1], x => "Evolved " + x.Split(".")[1]);
@@ -23,7 +24,7 @@ namespace PokemonGame
 
         }
 
-      
+
 
         public void PokemonsCanBeEvolved(List<Pokemon> allTables)
         {
@@ -61,7 +62,7 @@ namespace PokemonGame
                     Console.WriteLine("There is no such ID"); //pokemon sacrificed itself gg
                 }
             }
-           
+
             if (first.Exp >= first.EvolutionLimit && first.HasEvolved == 0 && allTables.Where(x => (first.ToString() == x.ToString()) && (first.Name == x.Name)).Count() > NoToEvolve)
             {
 
@@ -76,34 +77,37 @@ namespace PokemonGame
 
 
                     int sacrifice;
-                    for(int x = 0; x < NoToEvolve; x++ ) {
-                    while (true)
+                    for (int x = 0; x < NoToEvolve; x++)
                     {
-                        try
+                        while (true)
                         {
-                            Console.Write($"Plese enter ID to sacrifice pokemon ({x + 1}): ");
-                            if (Int32.TryParse(Console.ReadLine(), out int sacrificedPokemon))
+                            try
                             {
-                                sacrifice = sacrificedPokemon;
-                                Pokemon query = allTables.Where(self => self.PokemonId == sacrifice).First();
-                                if (query.ToString() != first.ToString()) {
-                                    Console.WriteLine("That is not a suitable pokemon to merge with your current pokemon");
-                                    continue;
-                                }
-                                else if (query.PokemonId == first.PokemonId) {
-                                    Console.WriteLine("You can't sacrifice the pokemon you want to evolve!");
-                                    continue;
-                                }
-                                break;
+                                Console.Write($"Plese enter ID to sacrifice pokemon ({x + 1}): ");
+                                if (Int32.TryParse(Console.ReadLine(), out int sacrificedPokemon))
+                                {
+                                    sacrifice = sacrificedPokemon;
+                                    Pokemon query = allTables.Where(self => self.PokemonId == sacrifice).First();
+                                    if (query.ToString() != first.ToString())
+                                    {
+                                        Console.WriteLine("That is not a suitable pokemon to merge with your current pokemon");
+                                        continue;
+                                    }
+                                    else if (query.PokemonId == first.PokemonId)
+                                    {
+                                        Console.WriteLine("You can't sacrifice the pokemon you want to evolve!");
+                                        continue;
+                                    }
+                                    break;
 
-                            }//what happens iuf you sacrifice other pokemon
+                                }//what happens iuf you sacrifice other pokemon
+                            }
+                            catch
+                            {
+                                Console.WriteLine("There is no such ID");
+                            }
                         }
-                        catch
-                        {
-                            Console.WriteLine("There is no such ID");
-                        }
-                    }
-                    sacrificePokemons.Add(sacrifice);
+                        sacrificePokemons.Add(sacrifice);
                     }
                     db.RemoveRange(db.Pokemons.Where(x => sacrificePokemons.Contains(x.PokemonId)));
 

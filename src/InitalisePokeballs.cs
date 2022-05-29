@@ -1,7 +1,10 @@
-namespace PokemonGame {
-    public class Initalise {
-        public static void InitalisePokeballs() {
-              using (PokemonContext db = new PokemonContext())
+namespace PokemonGame
+{
+    public class Initalise
+    {
+        public static void InitalisePokeballs()
+        {
+            using (PokemonContext db = new PokemonContext())
             {
                 try
                 {

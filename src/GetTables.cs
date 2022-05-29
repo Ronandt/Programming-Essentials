@@ -1,6 +1,8 @@
-namespace PokemonGame {
-    class GetTables {
-             public static List<Pokemon> AllTables()
+namespace PokemonGame
+{
+    class GetTables
+    {
+        public static List<Pokemon> AllTables()
         {
             using (PokemonContext db = new PokemonContext())
             {
@@ -9,8 +11,9 @@ namespace PokemonGame {
             }
         }
 
-        public static List<String> EntityTypes() {
-           using (PokemonContext db = new PokemonContext())
+        public static List<String> EntityTypes()
+        {
+            using (PokemonContext db = new PokemonContext())
             {
                 List<string> entityTables = db.Model.GetEntityTypes().Select(t => t.ClrType.ToString().ToLower()).ToList();
                 return entityTables;
